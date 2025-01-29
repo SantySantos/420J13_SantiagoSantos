@@ -1,20 +1,78 @@
-// HelloWord.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
+//headers
 #include <iostream>
+#include <string>
+#include <limits>
+#include "userAccount.h"
+
+using namespace std;
+
+int getID(const string& message, const string& errorMessage, const string& acceptedMessage, int minNumber, int maxNumber);
+string User(const string& message, const string& errorMessage);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    int tempID = getID("please create an ID: ", "please enter a valid number", "Your ID is: ", 0, 9999);
+    string tempUsername = User("please enter your username: ","please write something");
+    string tempPassword = User("Please enter your password:" , "please write something");
+    userAccount newUser (tempID, tempUsername, tempPassword);
+    cout << "Account created correctly!" << endl;
+        
+    while (!newUser.login(newUser.username, newUser.password))
+    {
+        cout << "Invalid username or password." << "\n" << "Try Again" << endl;
+    }
+    cout << "Login Succesful!" << endl;
+    cout << "Account ID: " << newUser.id << endl;
+    return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int getID(const string& message, const string& errorMessage, const string& acceptedMessage,int minNumber, int maxNumber)
+{
+    int number;
+    while (true) {
+        cout << message;
+        cin >> number;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+        if (cin.fail()) 
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << errorMessage << endl;
+            continue;
+            
+        }
+        if (number < minNumber || number > maxNumber) 
+        {
+            cout << errorMessage << endl;
+            continue;
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return number;
+    }
+}
+
+string User(const string& message, const string& errorMessage)
+{
+    string input;
+    cout << message; 
+    getline(cin, input);
+    bool isValid = false;
+
+    while(!isValid)
+    {
+        if (input.empty()) 
+        {
+            cout << errorMessage << "\n" << message ;
+            getline(cin, input);
+        }
+            
+        else
+            isValid = true;
+    }
+
+    return input;  
+}
+
+
+
