@@ -51,7 +51,7 @@ int main()
 			<< "Total:" << courses[i].midterm + courses[i].project + courses[i].exam << "\n"
 			<< "\n";
 	}
-
+	
 
 	return 0;
 }
