@@ -46,13 +46,13 @@ int main()
     for (int i = 0; i < nbStudent; i++)
     {
         cout << "\n"
-            << "Name: " << students[i].name
-            << "ID: " << students[i].id
-            << "Grades:";
+            << " Name: " << students[i].name
+            << " ID: " << students[i].id
+            << " Grades: ";
 
         for (int j = 0; j < nbSubject; j++) {
 
-            cout << "Grades: " << students[i].grades[j];;
+            cout << " Grades: " << students[i].grades[j];;
         }
     }
 
