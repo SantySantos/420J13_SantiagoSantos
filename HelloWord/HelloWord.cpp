@@ -18,11 +18,12 @@ struct Course {
 
 float getID(const string& message, const string& errorMessage, const string& acceptedMessage, int minNumber, int maxNumber);
 Course createCourse(string name, float midterm, float project, float exam);
+int readArraySize();
 
 int main()
 {
-    const int nbCourses = 3;
-    Course myCourses[nbCourses];
+    int nbCourses = readArraySize();
+    Course *myCourses = new Course[nbCourses];
 
     string tempName;
     float tempMidterm;
@@ -39,19 +40,51 @@ int main()
         tempExam = getID("Please enter your exam score: ", "Please enter a number between 0 and 100", "Good number", 0, 100);
         myCourses[i] = createCourse(tempName, tempMidterm, tempProject, tempExam);
     }
+    for (int i = 0; i < nbCourses; i++)
+    {
 
-    for (Course myCourse : myCourses) {
+        cout << "\n"
+            << "your course name is: " << myCourses[i].name << "\n"
+            << "your midterm score is: " << myCourses[i].midterm << "\n"
+            << "your project score is: " << myCourses[i].project << "\n"
+            << "your exam score is: " << myCourses[i].exam << endl;
+    }
+   /* for (Course myCourse : myCourses) {
         cout << "\n"
             << "your course name is: " << myCourse.name << "\n"
             << "your midterm score is: " << myCourse.midterm << "\n"
             << "your project score is: " << myCourse.project << "\n"
             << "your exam score is: " << myCourse.exam << endl;
-    }
-   
+    }*/
+
+    delete[] myCourses;
+
 	return 0;
 }
 
+int readArraySize()
+{
+    int sizeArray;
+    while (true)
+    {
+        cout << "insert the number of courses" << endl;
+        cin >> sizeArray;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter a valid number" << endl;
+            continue;
+        }
+        if (sizeArray < 0 && sizeArray > INT16_MAX)
+        {
+            cout << "Please enter a positive number" << endl;
+            continue;
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return sizeArray;
+    }
 
+}
 Course createCourse(string name, float midterm, float project, float exam) 
 {
     //creating the variable in the stack
