@@ -42,7 +42,6 @@ int main()
     }
     for (int i = 0; i < nbCourses; i++)
     {
-
         cout << "\n"
             << "your course name is: " << myCourses[i].name << "\n"
             << "your midterm score is: " << myCourses[i].midterm << "\n"
