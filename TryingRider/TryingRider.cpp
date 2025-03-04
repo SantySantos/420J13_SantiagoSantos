@@ -2,6 +2,6 @@
 
 int main()
 {
-    std::cout << "Hello Rider" << "\n" ;   
+    std::cout << "Hello Rider" << "\n" ;
     return 0;
 }
