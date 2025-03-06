@@ -19,7 +19,7 @@ int main()
     int nbStudent;
     int nbSubject;
 
-    
+
     cout << "Please enter the number of students: " << endl;
     cin >> nbStudent;
     cout << "Please enter the number of subjects" << endl;

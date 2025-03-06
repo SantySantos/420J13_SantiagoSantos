@@ -3,9 +3,9 @@
 
 //to complete
 template<typename Num>
-concept Numeric = std::is_arithmetic_v<Num>;
+concept numeric = std::is_arithmetic_v<Num>;
 
-template<Numeric T>
+template<numeric T>
 class mySumArray {
 private:
     size_t size;
