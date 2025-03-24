@@ -52,10 +52,10 @@ int main()
 
         for (int j = 0; j < nbSubject; j++) {
 
-            cout << " Grades: " << students[i].grades[j];;
+            cout << " Grades: " << students[i].grades[j];
         }
     }
-
+    
     delete[] students;
 
     return 0;
