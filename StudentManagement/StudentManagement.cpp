@@ -12,7 +12,7 @@ struct Student
     int id;
     double *grades; // this is an pointer on an address (it could be anything)
 };
-
+    
 
 int main()
 {
