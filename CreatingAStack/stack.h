@@ -1,5 +1,6 @@
 #pragma once
-
+#include <string>
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -16,6 +17,8 @@ private:
     
     T* myArr;
 
+   
+    
     void increaseArraySize()
     {
         T* tempArr = new T[Size * 2];
@@ -41,6 +44,12 @@ public:
     {
         delete[] myArr;
     }
+
+    std::string Top()
+    {
+        return to_string(*end -1);
+    }
+    
     int size()
     {
         return Size;
@@ -72,7 +81,7 @@ public:
         {
             increaseArraySize();
         }
-        myArr[end] = value;
+        *end = value;
         ++end;
     }   
 };
