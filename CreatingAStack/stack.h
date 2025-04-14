@@ -18,7 +18,6 @@ private:
     T* myArr;
 
    
-    
     void increaseArraySize()
     {
         T* tempArr = new T[Size * 2];

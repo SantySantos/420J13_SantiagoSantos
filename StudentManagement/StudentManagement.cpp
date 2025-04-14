@@ -2,6 +2,7 @@
 #include <string>
 #include <limits>
 #include <format>
+#include <stack>
 
 using namespace std;
 
@@ -16,17 +17,17 @@ struct Student
 
 int main()
 {
+
+	stack<Student> myStack;
     int nbStudent;
     int nbSubject;
-
-
     cout << "Please enter the number of students: " << endl;
     cin >> nbStudent;
     cout << "Please enter the number of subjects" << endl;
     cin >> nbSubject;
-    
-    Student *students = new Student[nbStudent];
-    
+
+    Student* students = new Student[nbStudent];
+
     for (int i = 0; i < nbStudent; i++)
     {
         cout << "Name: " << endl;
@@ -40,24 +41,29 @@ int main()
             cout << "Enter the grade for subject " << (j + 1) << endl;
             cin >> students[i].grades[j]; // this is creating an errri
         }
+
+		myStack.push(students[i]); // push the student into the stack
     }
 
-    cout << "Student Data: " << endl;
-    for (int i = 0; i < nbStudent; i++)
-    {
-        cout << "\n"
-            << " Name: " << students[i].name
-            << " ID: " << students[i].id
-            << " Grades: ";
+	//display the students
+   
+    while (!myStack.empty()) {
 
-        for (int j = 0; j < nbSubject; j++) {
-
-            cout << " Grades: " << students[i].grades[j];
-        }
+		Student currentStudent = myStack.top();
+		cout << "Name: " << currentStudent.name << endl;
+		cout << "ID: " << currentStudent.id << endl;
+		cout << "Grades: ";
+		for (int i = 0; i < nbSubject; i++) {
+			cout << currentStudent.grades[i] << ", ";
+		}
+		cout << endl;
+		myStack.pop();
     }
+
+	getchar();
+
+	delete[] students;     // free the memory allocated for students
     
-    delete[] students;
-
     return 0;
 }
 

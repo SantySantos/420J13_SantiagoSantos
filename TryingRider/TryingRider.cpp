@@ -16,6 +16,7 @@ class animals{
 };
 int main()
 {
+
   bool myTrue = 12;
     if (myTrue == true)
         cout << "true" << endl;
